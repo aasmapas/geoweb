@@ -57,6 +57,24 @@ var config = {
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
+        },{
+            id: 'volcan3',
+            alignment: 'right',
+            hidden: false,
+            title: 'Kīlauea',
+            image: '',
+            description: 'Kīlauea (en hawaiano: ˈkiːlɔuˈwɛjə) es un volcán en escudo, el más reciente y activo de los cinco que conforman la isla de Hawái. Es uno de los volcanes más activos de la Tierra <br><iframe width="415" height="315" src="https://www.youtube.com/embed/j08bYTBVWrg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+            location: {
+                center: [-155.286762, 19.421097],
+                zoom: 14,
+                pitch: 60,
+                bearing: -43.2
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: true,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
         }
     ]
 };
