@@ -25,7 +25,24 @@
             map.addControl(new mapboxgl.AttributionControl({
                 compact: true
             }));
-            map.addControl(new mapboxgl.NavigationControl());           
+            map.addControl(new mapboxgl.NavigationControl());         
+            
+            map.on("load", function () {
+
+                generarPeticionTerremotos();
+                addPopupToMap("terremotos");
+
+                }); // fin load mapa
+
+                map.on("zoomend", function () {
+
+                generarPeticionTerremotos();
+                });
+
+                map.on("moveend", function () {
+
+                generarPeticionTerremotos();
+                });
 
         } //fin init
 

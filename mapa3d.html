@@ -27,12 +27,25 @@
             map.addControl(new mapboxgl.AttributionControl({ compact: true }));
             map.addControl(new mapboxgl.NavigationControl());
 
+            map.on('load', function () {
+             add3D();
+
+            // add3DICGC();
+
+            }); //fin onload
+
         } // final init
     </script>
     </head>
 
     <body onload="init()">
-
+        <div class="panelTitulo">
+        Mapa 3D
+    </div>
+    <div class="panelTopIzquierda">
+        
+        <input id="textos" onChange= "ver3D(this.checked)" type="checkbox" checked />Ver 3D
+    </div>
         <div id="map"></div>
     </body>
 

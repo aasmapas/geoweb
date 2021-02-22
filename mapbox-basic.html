@@ -24,14 +24,16 @@
         //Añadir vuestor token y vuestro estilo
         function init() {
             mapboxgl.accessToken =
-                'pk.eyJ1IjoiYWFzbWFwYXMiLCJhIjoiY2tqeWl2OHozMGFrZzJ3bXF6dWlncHBtciJ9.f5BWySdM7FY__WnptVPheA';
+                'pk.eyJ1IjoiZ2lzbWFzdGVybTIiLCJhIjoiY2plZHhubTQxMTNoYzMza3Rqa3kxYTdrOCJ9.53B1E6mKD_EQOVb2Y0-SsA';
             var map = new mapboxgl.Map({
                 container: 'map',
-                style: 'mapbox://styles/aasmapas/ckjyjbe8q2td417pjpw6m3csx',
+                style: 'mapbox://styles/gismasterm2/ckjyk4s6w2u1p17lfwl0ukn38',
                 center: [2.16859, 41.3954],
                 zoom: 13,
-                attributionControl: false
+                attributionControl: false,
+                hash: true
             });
+
             map.addControl(new mapboxgl.AttributionControl({ compact: true }));
             map.addControl(new mapboxgl.NavigationControl());
             map.addControl(new mapboxgl.GeolocateControl({
@@ -40,30 +42,59 @@
                 },
                 trackUserLocation: true
             }));
+
             var marker = new mapboxgl.Marker()
                 .setLngLat([2.161648, 41.3977])
                 .setPopup(new mapboxgl.Popup().setHTML('<h3>Hola</h3>'))
                 .addTo(map);
 
-
-                map.on('load', function () {
+            map.on('load', function () {
                 map.addSource("viasciclables_source", {
                     type: "vector",
-                    url: "mapbox://gismasterm2.25lhjr43" //poner mapbox://vuestro id
+                    url: "mapbox://gismasterm2.8pmlb5lk" //poner mapbox://vuestro id
                 }); //fin map source
 
                 map.addLayer({
                     id: "viasciclables",
                     type: "line",
                     source: "viasciclables_source",
-                    'source-layer': "vias_ciclables-2smuz5", //poner vuestro titulo capa
-                    paint:{
-                        'line-color':"#00ff00",
-                        "line-width":3
+                    'source-layer': "vias_ciclables-bj8983", //poner vuestro titulo capa
+                    paint: {
+                        'line-color': "#00ff00",
+                        "line-width": 3
                     }
                 });
-            }); 
-            
+
+
+                map.on('click', 'viasciclables', function (e) {
+
+                    var text = "";
+                    //console.info(e);
+                   // console.info(e.features[0]);
+                    for (key in e.features[0].properties) {
+
+                        text += "<b>" + key + "</b>:" + e.features[0].properties[key] + "<br>";
+                    }
+                    new mapboxgl.Popup()
+                        .setLngLat(e.lngLat)
+                        .setHTML(text)
+                        .addTo(map);
+
+                });
+
+                map.on('mouseenter', 'viasciclables', function () {
+                    map.getCanvas().style.cursor = 'pointer';
+                });
+
+                map.on('mouseleave', 'viasciclables', function () {
+                    map.getCanvas().style.cursor = '';
+                });
+
+
+
+            });
+
+
         } //fin init
     </script>
 </head>
